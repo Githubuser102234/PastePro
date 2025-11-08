@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PastePro - Advanced Code Sharing</title>
+    <title>PastePro - Share Your Code</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
     <style>
         :root {
             --primary: #4361ee;
@@ -174,24 +172,6 @@
             background-color: #e08615;
         }
 
-        .btn-danger {
-            background-color: var(--danger);
-            color: white;
-        }
-
-        .btn-danger:hover {
-            background-color: #e1156d;
-        }
-
-        .btn-info {
-            background-color: var(--info);
-            color: white;
-        }
-
-        .btn-info:hover {
-            background-color: #3a7bc8;
-        }
-
         .page {
             display: none;
             padding: 40px 0;
@@ -285,8 +265,6 @@
             justify-content: space-between;
             align-items: center;
             margin-top: 20px;
-            flex-wrap: wrap;
-            gap: 10px;
         }
 
         .paste-list {
@@ -684,247 +662,6 @@
             color: white;
         }
 
-        /* New Features Styles */
-        .search-box {
-            margin-bottom: 20px;
-            display: flex;
-            gap: 10px;
-        }
-
-        .search-box input {
-            flex: 1;
-        }
-
-        .filter-options {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .filter-option {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .stat-card {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        body.dark-mode .stat-card {
-            background-color: var(--card-dark);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--primary);
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .feature-card {
-            background-color: white;
-            padding: 25px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-
-        body.dark-mode .feature-card {
-            background-color: var(--card-dark);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        .feature-title {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .feature-description {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        .syntax-highlighted {
-            background-color: #1e1e1e;
-            color: #d4d4d4;
-            padding: 20px;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
-
-        .raw-content {
-            font-family: 'Courier New', monospace;
-            white-space: pre-wrap;
-        }
-
-        .view-options {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .share-options {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .share-input {
-            flex: 1;
-            background-color: #f8f9fa;
-            border: 1px solid #ddd;
-            padding: 8px 12px;
-            border-radius: 5px;
-            font-size: 0.9rem;
-        }
-
-        body.dark-mode .share-input {
-            background-color: #2d2d2d;
-            border-color: #444;
-            color: var(--text-dark);
-        }
-
-        .export-options {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .password-protection {
-            margin-top: 15px;
-            padding: 15px;
-            background-color: #f8f9fa;
-            border-radius: 5px;
-            border-left: 4px solid var(--warning);
-        }
-
-        body.dark-mode .password-protection {
-            background-color: #2d2d2d;
-        }
-
-        .password-input {
-            margin-top: 10px;
-        }
-
-        .comments-section {
-            margin-top: 30px;
-        }
-
-        .comment {
-            background-color: #f8f9fa;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-
-        body.dark-mode .comment {
-            background-color: #2d2d2d;
-        }
-
-        .comment-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-
-        .comment-form {
-            margin-top: 20px;
-        }
-
-        .comment-form textarea {
-            min-height: 100px;
-        }
-
-        .paste-actions-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .sort-options {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 30px;
-        }
-
-        .page-btn {
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            background-color: white;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        body.dark-mode .page-btn {
-            background-color: var(--card-dark);
-            border-color: #444;
-            color: var(--text-dark);
-        }
-
-        .page-btn.active {
-            background-color: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .page-btn:hover:not(.active) {
-            background-color: #f8f9fa;
-        }
-
-        body.dark-mode .page-btn:hover:not(.active) {
-            background-color: #2d2d2d;
-        }
-
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -961,15 +698,6 @@
             .modal-content {
                 width: 95%;
             }
-            
-            .paste-actions-top {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .search-box {
-                flex-direction: column;
-            }
         }
     </style>
 </head>
@@ -986,7 +714,6 @@
                         <li><a href="#/" class="nav-link active" data-page="home">Home</a></li>
                         <li><a href="#/my-pastes" class="nav-link" data-page="my-pastes">My Pastes</a></li>
                         <li><a href="#/create" class="nav-link" data-page="create">Create Paste</a></li>
-                        <li><a href="#/stats" class="nav-link" data-page="stats">Stats</a></li>
                     </ul>
                 </nav>
                 <div class="user-actions">
@@ -1003,73 +730,17 @@
         <!-- Home Page -->
         <div id="home" class="page active">
             <div class="hero">
-                <h1>Advanced Code Sharing</h1>
-                <p>PastePro is the most powerful tool to share your code snippets, notes, and text with anyone. Featuring syntax highlighting, password protection, and much more!</p>
+                <h1>Share Code Instantly</h1>
+                <p>PastePro is a simple and powerful tool to share your code snippets, notes, and text with anyone. No registration required, but signing up unlocks more features!</p>
                 <a href="#/create" class="btn btn-primary">Create New Paste</a>
             </div>
 
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3 class="feature-title">Syntax Highlighting</h3>
-                    <p class="feature-description">Support for 30+ programming languages with beautiful syntax highlighting</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <h3 class="feature-title">Password Protection</h3>
-                    <p class="feature-description">Secure your pastes with passwords for extra privacy</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-share-alt"></i>
-                    </div>
-                    <h3 class="feature-title">Easy Sharing</h3>
-                    <p class="feature-description">Share your pastes via direct links or embed codes</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <h3 class="feature-title">Paste Analytics</h3>
-                    <p class="feature-description">Track views and engagement with your shared pastes</p>
-                </div>
-            </div>
-
             <h2>Recent Public Pastes</h2>
-            <div class="search-box">
-                <input type="text" id="searchInput" class="form-control" placeholder="Search pastes...">
-                <button class="btn btn-primary" id="searchButton">Search</button>
-            </div>
-            <div class="filter-options">
-                <div class="filter-option">
-                    <input type="checkbox" id="filterPublic" checked>
-                    <label for="filterPublic">Public</label>
-                </div>
-                <div class="filter-option">
-                    <input type="checkbox" id="filterUnlisted" checked>
-                    <label for="filterUnlisted">Unlisted</label>
-                </div>
-                <div class="sort-options">
-                    <label for="sortBy">Sort by:</label>
-                    <select id="sortBy" class="form-control">
-                        <option value="newest">Newest First</option>
-                        <option value="oldest">Oldest First</option>
-                        <option value="views">Most Views</option>
-                    </select>
-                </div>
-            </div>
             <div class="paste-list" id="recentPastes">
                 <div class="loading">
                     <i class="fas fa-spinner fa-spin"></i>
                     <p>Loading recent pastes...</p>
                 </div>
-            </div>
-            <div class="pagination" id="pagination">
-                <!-- Pagination will be generated here -->
             </div>
         </div>
 
@@ -1104,12 +775,6 @@
                             <option value="go">Go</option>
                             <option value="rust">Rust</option>
                             <option value="kotlin">Kotlin</option>
-                            <option value="typescript">TypeScript</option>
-                            <option value="bash">Bash/Shell</option>
-                            <option value="json">JSON</option>
-                            <option value="xml">XML</option>
-                            <option value="yaml">YAML</option>
-                            <option value="markdown">Markdown</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -1132,11 +797,6 @@
                         <option value="private">Private (Requires Login)</option>
                     </select>
                 </div>
-                <div class="form-group password-protection">
-                    <label for="pastePassword">Password Protection (Optional)</label>
-                    <input type="password" id="pastePassword" class="form-control password-input" placeholder="Set a password for this paste">
-                    <small>Leave empty to make this paste accessible without a password</small>
-                </div>
                 <div class="paste-actions">
                     <button class="btn btn-outline" id="clearPaste">Clear</button>
                     <button class="btn btn-primary" id="createPaste">Create Paste</button>
@@ -1147,61 +807,12 @@
         <!-- My Pastes Page -->
         <div id="my-pastes" class="page">
             <h1>My Pastes</h1>
-            <div class="paste-actions-top">
-                <div class="search-box">
-                    <input type="text" id="userSearchInput" class="form-control" placeholder="Search my pastes...">
-                    <button class="btn btn-primary" id="userSearchButton">Search</button>
-                </div>
-                <div class="sort-options">
-                    <label for="userSortBy">Sort by:</label>
-                    <select id="userSortBy" class="form-control">
-                        <option value="newest">Newest First</option>
-                        <option value="oldest">Oldest First</option>
-                        <option value="views">Most Views</option>
-                        <option value="title">Title A-Z</option>
-                    </select>
-                </div>
-            </div>
             <div class="paste-list" id="userPastes">
                 <div class="empty-state" id="userPastesEmpty">
                     <i class="fas fa-sign-in-alt"></i>
                     <h3>Sign in to view your pastes</h3>
                     <p>You need to be signed in to see your created pastes.</p>
                     <button class="btn btn-primary" id="signInFromPastes">Sign In</button>
-                </div>
-            </div>
-            <div class="pagination" id="userPagination">
-                <!-- Pagination will be generated here -->
-            </div>
-        </div>
-
-        <!-- Stats Page -->
-        <div id="stats" class="page">
-            <h1>PastePro Statistics</h1>
-            <div class="stats-container">
-                <div class="stat-card">
-                    <div class="stat-value" id="totalPastes">0</div>
-                    <div class="stat-label">Total Pastes</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="publicPastes">0</div>
-                    <div class="stat-label">Public Pastes</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="userPastesCount">0</div>
-                    <div class="stat-label">Your Pastes</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="totalViews">0</div>
-                    <div class="stat-label">Total Views</div>
-                </div>
-            </div>
-
-            <h2>Most Popular Pastes</h2>
-            <div class="paste-list" id="popularPastes">
-                <div class="loading">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>Loading popular pastes...</p>
                 </div>
             </div>
         </div>
@@ -1305,12 +916,6 @@
                                 <option value="go">Go</option>
                                 <option value="rust">Rust</option>
                                 <option value="kotlin">Kotlin</option>
-                                <option value="typescript">TypeScript</option>
-                                <option value="bash">Bash/Shell</option>
-                                <option value="json">JSON</option>
-                                <option value="xml">XML</option>
-                                <option value="yaml">YAML</option>
-                                <option value="markdown">Markdown</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -1333,11 +938,6 @@
                             <option value="private">Private</option>
                         </select>
                     </div>
-                    <div class="form-group password-protection">
-                        <label for="editPastePassword">Password Protection (Optional)</label>
-                        <input type="password" id="editPastePassword" class="form-control password-input" placeholder="Set a password for this paste">
-                        <small>Leave empty to remove password protection</small>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-outline" id="cancelEdit">Cancel</button>
@@ -1345,32 +945,11 @@
                 </div>
             </div>
         </div>
-
-        <!-- Password Prompt Modal -->
-        <div id="passwordModal" class="modal-overlay hidden">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>Password Required</h2>
-                    <button class="close-modal" id="closePasswordModal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <p>This paste is protected by a password. Please enter the password to view it.</p>
-                    <div class="form-group">
-                        <label for="passwordInput">Password</label>
-                        <input type="password" id="passwordInput" class="form-control" placeholder="Enter paste password">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-outline" id="cancelPassword">Cancel</button>
-                    <button class="btn btn-primary" id="submitPassword">View Paste</button>
-                </div>
-            </div>
-        </div>
     </main>
 
     <footer>
         <div class="container">
-            <p>PastePro &copy; 2023 - Advanced Code Sharing Platform</p>
+            <p>PastePro &copy; 2023 - Share your code with the world</p>
         </div>
     </footer>
 
@@ -1401,8 +980,7 @@
             limit,
             serverTimestamp,
             deleteDoc,
-            updateDoc,
-            increment
+            updateDoc
         } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
 
         // Your web app's Firebase configuration
@@ -1442,8 +1020,7 @@
             limit,
             serverTimestamp,
             deleteDoc,
-            updateDoc,
-            increment
+            updateDoc
         };
     </script>
 
@@ -1470,41 +1047,9 @@
             const editPasteLanguage = document.getElementById('editPasteLanguage');
             const editPasteExpiry = document.getElementById('editPasteExpiry');
             const editPasteVisibility = document.getElementById('editPasteVisibility');
-            const editPastePassword = document.getElementById('editPastePassword');
             
-            // Password Modal Elements
-            const passwordModal = document.getElementById('passwordModal');
-            const closePasswordModal = document.getElementById('closePasswordModal');
-            const cancelPassword = document.getElementById('cancelPassword');
-            const submitPassword = document.getElementById('submitPassword');
-            const passwordInput = document.getElementById('passwordInput');
-            
-            // Search and Filter Elements
-            const searchInput = document.getElementById('searchInput');
-            const searchButton = document.getElementById('searchButton');
-            const userSearchInput = document.getElementById('userSearchInput');
-            const userSearchButton = document.getElementById('userSearchButton');
-            const filterPublic = document.getElementById('filterPublic');
-            const filterUnlisted = document.getElementById('filterUnlisted');
-            const sortBy = document.getElementById('sortBy');
-            const userSortBy = document.getElementById('userSortBy');
-            
-            // Stats Elements
-            const totalPastes = document.getElementById('totalPastes');
-            const publicPastes = document.getElementById('publicPastes');
-            const userPastesCount = document.getElementById('userPastesCount');
-            const totalViews = document.getElementById('totalViews');
-            const popularPastes = document.getElementById('popularPastes');
-            
-            // Current paste being edited and password verification
+            // Current paste being edited
             let currentEditingPasteId = null;
-            let currentPasswordPasteId = null;
-            let currentPasswordProtectedPaste = null;
-            
-            // Pagination
-            let currentPage = 1;
-            let userCurrentPage = 1;
-            const pastesPerPage = 9;
             
             // Theme Toggle
             themeToggle.addEventListener('click', function() {
@@ -1566,19 +1111,9 @@
                     if (window.currentUser) {
                         loadUserPastes();
                     }
-                // In the handleHashChange function, update the stats section:
-} else if (hash === '/stats') {
-    navigateToPage('stats');
-    // Use setTimeout to ensure the page is rendered before loading stats
-    setTimeout(() => {
-        try {
-            loadStats();
-        } catch (error) {
-            console.error('Error loading stats:', error);
-            showAlert('Error loading statistics. Some data may not be available.', 'error');
-        }
-    }, 100);
-}
+                }
+            }
+
             // Initial page load
             handleHashChange();
             
@@ -1658,12 +1193,6 @@
                 }
             });
 
-            passwordModal.addEventListener('click', function(e) {
-                if (e.target === passwordModal) {
-                    passwordModal.classList.add('hidden');
-                }
-            });
-
             // Close edit modal with buttons
             closeEditModal.addEventListener('click', function() {
                 editPasteModal.classList.add('hidden');
@@ -1671,33 +1200,6 @@
 
             cancelEdit.addEventListener('click', function() {
                 editPasteModal.classList.add('hidden');
-            });
-
-            // Close password modal with buttons
-            closePasswordModal.addEventListener('click', function() {
-                passwordModal.classList.add('hidden');
-            });
-
-            cancelPassword.addEventListener('click', function() {
-                passwordModal.classList.add('hidden');
-                window.location.hash = '#/';
-            });
-
-            // Submit password
-            submitPassword.addEventListener('click', function() {
-                const password = passwordInput.value;
-                if (!password) {
-                    showAlert('Please enter a password', 'error');
-                    return;
-                }
-
-                if (currentPasswordProtectedPaste && currentPasswordProtectedPaste.password === password) {
-                    passwordModal.classList.add('hidden');
-                    displayPasteContent(currentPasswordProtectedPaste);
-                    passwordInput.value = '';
-                } else {
-                    showAlert('Incorrect password', 'error');
-                }
             });
 
             // Auth with email and password
@@ -1798,7 +1300,6 @@
                 const language = document.getElementById('pasteLanguage').value;
                 const expiry = document.getElementById('pasteExpiry').value;
                 const visibility = document.getElementById('pasteVisibility').value;
-                const password = document.getElementById('pastePassword').value;
                 
                 if (!content) {
                     showAlert('Paste content cannot be empty', 'error');
@@ -1823,12 +1324,6 @@
                     views: 0
                 };
                 
-                // Add password if provided
-                if (password) {
-                    pasteData.password = password;
-                    pasteData.isPasswordProtected = true;
-                }
-                
                 // Add user ID if signed in
                 if (window.currentUser) {
                     pasteData.userId = window.currentUser.uid;
@@ -1841,7 +1336,6 @@
                         // Clear form
                         document.getElementById('pasteTitle').value = '';
                         document.getElementById('pasteContent').value = '';
-                        document.getElementById('pastePassword').value = '';
                         // Redirect to the new paste
                         window.location.hash = `#/paste/${docRef.id}`;
                     })
@@ -1856,7 +1350,6 @@
                 if (confirm('Are you sure you want to clear the form?')) {
                     document.getElementById('pasteTitle').value = '';
                     document.getElementById('pasteContent').value = '';
-                    document.getElementById('pastePassword').value = '';
                 }
             });
 
@@ -1869,7 +1362,6 @@
                 const language = editPasteLanguage.value;
                 const expiry = editPasteExpiry.value;
                 const visibility = editPasteVisibility.value;
-                const password = editPastePassword.value;
                 
                 if (!content) {
                     showAlert('Paste content cannot be empty', 'error');
@@ -1884,15 +1376,6 @@
                     visibility,
                     updatedAt: window.firebaseMethods.serverTimestamp()
                 };
-                
-                // Handle password protection
-                if (password) {
-                    pasteData.password = password;
-                    pasteData.isPasswordProtected = true;
-                } else {
-                    pasteData.isPasswordProtected = false;
-                    pasteData.password = null;
-                }
                 
                 const docRef = window.firebaseMethods.doc(window.firebase.db, "pastes", currentEditingPasteId);
                 
@@ -1913,231 +1396,202 @@
                     });
             });
 
-            // Search functionality
-            searchButton.addEventListener('click', performSearch);
-            searchInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') performSearch();
-            });
-
-            userSearchButton.addEventListener('click', performUserSearch);
-            userSearchInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') performUserSearch();
-            });
-
-            function performSearch() {
-                const searchTerm = searchInput.value.trim();
-                if (searchTerm) {
-                    searchPastes(searchTerm);
-                } else {
-                    loadRecentPastes();
-                }
-            }
-
-            function performUserSearch() {
-                const searchTerm = userSearchInput.value.trim();
-                if (searchTerm && window.currentUser) {
-                    searchUserPastes(searchTerm);
-                } else if (window.currentUser) {
-                    loadUserPastes();
-                }
-            }
-
-            // Filter and sort changes
-            filterPublic.addEventListener('change', loadRecentPastes);
-            filterUnlisted.addEventListener('change', loadRecentPastes);
-            sortBy.addEventListener('change', loadRecentPastes);
-            userSortBy.addEventListener('change', function() {
-                if (window.currentUser) {
-                    loadUserPastes();
-                }
-            });
-
-            // Load Recent Pastes with search, filter, and sort
+            // Load Recent Pastes
             function loadRecentPastes() {
                 const recentPastesContainer = document.getElementById('recentPastes');
-                const paginationContainer = document.getElementById('pagination');
                 
-                recentPastesContainer.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i><p>Loading recent pastes...</p></div>';
-                
-                let q = window.firebaseMethods.query(
-                    window.firebaseMethods.collection(window.firebase.db, "pastes")
+                // Try to load with complex query first
+                const complexQuery = window.firebaseMethods.query(
+                    window.firebaseMethods.collection(window.firebase.db, "pastes"),
+                    window.firebaseMethods.where("visibility", "==", "public"),
+                    window.firebaseMethods.orderBy("createdAt", "desc"),
+                    window.firebaseMethods.limit(9)
                 );
                 
-                // Apply visibility filters
-                const visibilityFilters = [];
-                if (filterPublic.checked) visibilityFilters.push('public');
-                if (filterUnlisted.checked) visibilityFilters.push('unlisted');
-                
-                if (visibilityFilters.length > 0) {
-                    q = window.firebaseMethods.query(
-                        q,
-                        window.firebaseMethods.where("visibility", "in", visibilityFilters)
-                    );
-                }
-                
-                // Apply sorting
-                const sortValue = sortBy.value;
-                if (sortValue === 'newest') {
-                    q = window.firebaseMethods.query(q, window.firebaseMethods.orderBy("createdAt", "desc"));
-                } else if (sortValue === 'oldest') {
-                    q = window.firebaseMethods.query(q, window.firebaseMethods.orderBy("createdAt", "asc"));
-                } else if (sortValue === 'views') {
-                    q = window.firebaseMethods.query(q, window.firebaseMethods.orderBy("views", "desc"));
-                }
-                
-                window.firebaseMethods.getDocs(q)
+                window.firebaseMethods.getDocs(complexQuery)
                     .then((querySnapshot) => {
-                        let pastes = [];
-                        querySnapshot.forEach((doc) => {
-                            const paste = doc.data();
-                            pastes.push({...paste, id: doc.id});
-                        });
+                        recentPastesContainer.innerHTML = '';
                         
-                        // Apply search filter if needed
-                        const searchTerm = searchInput.value.trim().toLowerCase();
-                        if (searchTerm) {
-                            pastes = pastes.filter(paste => 
-                                paste.title.toLowerCase().includes(searchTerm) || 
-                                paste.content.toLowerCase().includes(searchTerm)
-                            );
+                        if (querySnapshot.empty) {
+                            recentPastesContainer.innerHTML = `
+                                <div class="empty-state">
+                                    <i class="fas fa-paste"></i>
+                                    <h3>No public pastes yet</h3>
+                                    <p>Be the first to create a public paste!</p>
+                                    <a href="#/create" class="btn btn-primary">Create Paste</a>
+                                </div>
+                            `;
+                            return;
                         }
                         
-                        displayPastesWithPagination(pastes, recentPastesContainer, paginationContainer, false);
+                        querySnapshot.forEach((doc) => {
+                            const paste = doc.data();
+                            const pasteElement = createPasteCard(paste, doc.id);
+                            recentPastesContainer.appendChild(pasteElement);
+                        });
                     })
                     .catch((error) => {
-                        console.error('Error loading pastes:', error);
-                        recentPastesContainer.innerHTML = `
-                            <div class="empty-state">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                <h3>Error loading pastes</h3>
-                                <p>There was a problem loading the recent pastes. Please try again later.</p>
-                            </div>
-                        `;
+                        console.error('Complex query failed, trying simple query:', error);
+                        
+                        // Fallback to simple query without ordering/filtering
+                        const simpleQuery = window.firebaseMethods.collection(window.firebase.db, "pastes");
+                        
+                        window.firebaseMethods.getDocs(simpleQuery)
+                            .then((querySnapshot) => {
+                                recentPastesContainer.innerHTML = '';
+                                
+                                if (querySnapshot.empty) {
+                                    recentPastesContainer.innerHTML = `
+                                        <div class="empty-state">
+                                            <i class="fas fa-paste"></i>
+                                            <h3>No pastes yet</h3>
+                                            <p>Be the first to create a paste!</p>
+                                            <a href="#/create" class="btn btn-primary">Create Paste</a>
+                                        </div>
+                                    `;
+                                    return;
+                                }
+                                
+                                // Filter public pastes manually and limit to 9
+                                let publicPastes = [];
+                                querySnapshot.forEach((doc) => {
+                                    const paste = doc.data();
+                                    if (paste.visibility === 'public') {
+                                        publicPastes.push({...paste, id: doc.id});
+                                    }
+                                });
+                                
+                                // Sort by date manually (newest first)
+                                publicPastes.sort((a, b) => {
+                                    const dateA = a.createdAt ? a.createdAt.toDate() : new Date(0);
+                                    const dateB = b.createdAt ? b.createdAt.toDate() : new Date(0);
+                                    return dateB - dateA;
+                                });
+                                
+                                // Take only first 9
+                                publicPastes = publicPastes.slice(0, 9);
+                                
+                                if (publicPastes.length === 0) {
+                                    recentPastesContainer.innerHTML = `
+                                        <div class="empty-state">
+                                            <i class="fas fa-paste"></i>
+                                            <h3>No public pastes yet</h3>
+                                            <p>Be the first to create a public paste!</p>
+                                            <a href="#/create" class="btn btn-primary">Create Paste</a>
+                                        </div>
+                                    `;
+                                    return;
+                                }
+                                
+                                publicPastes.forEach((paste) => {
+                                    const pasteElement = createPasteCard(paste, paste.id);
+                                    recentPastesContainer.appendChild(pasteElement);
+                                });
+                            })
+                            .catch((error) => {
+                                console.error('Error loading pastes:', error);
+                                recentPastesContainer.innerHTML = `
+                                    <div class="empty-state">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        <h3>Error loading pastes</h3>
+                                        <p>There was a problem loading the recent pastes. Please try again later.</p>
+                                    </div>
+                                `;
+                            });
                     });
             }
 
-            // Load User Pastes with search and sort
+            // Load User Pastes
             function loadUserPastes() {
                 if (!window.currentUser) {
                     return;
                 }
                 
                 const userPastesContainer = document.getElementById('userPastes');
-                const userPaginationContainer = document.getElementById('userPagination');
-                
                 userPastesContainer.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i><p>Loading your pastes...</p></div>';
                 
-                let q = window.firebaseMethods.query(
+                // Try complex query first
+                const complexQuery = window.firebaseMethods.query(
                     window.firebaseMethods.collection(window.firebase.db, "pastes"),
-                    window.firebaseMethods.where("userId", "==", window.currentUser.uid)
+                    window.firebaseMethods.where("userId", "==", window.currentUser.uid),
+                    window.firebaseMethods.orderBy("createdAt", "desc")
                 );
                 
-                // Apply sorting
-                const sortValue = userSortBy.value;
-                if (sortValue === 'newest') {
-                    q = window.firebaseMethods.query(q, window.firebaseMethods.orderBy("createdAt", "desc"));
-                } else if (sortValue === 'oldest') {
-                    q = window.firebaseMethods.query(q, window.firebaseMethods.orderBy("createdAt", "asc"));
-                } else if (sortValue === 'views') {
-                    q = window.firebaseMethods.query(q, window.firebaseMethods.orderBy("views", "desc"));
-                } else if (sortValue === 'title') {
-                    q = window.firebaseMethods.query(q, window.firebaseMethods.orderBy("title", "asc"));
-                }
-                
-                window.firebaseMethods.getDocs(q)
+                window.firebaseMethods.getDocs(complexQuery)
                     .then((querySnapshot) => {
-                        let pastes = [];
+                        userPastesContainer.innerHTML = '';
+                        
+                        if (querySnapshot.empty) {
+                            userPastesContainer.innerHTML = `
+                                <div class="empty-state">
+                                    <i class="fas fa-paste"></i>
+                                    <h3>No pastes yet</h3>
+                                    <p>You haven't created any pastes yet.</p>
+                                    <a href="#/create" class="btn btn-primary">Create Your First Paste</a>
+                                </div>
+                            `;
+                            return;
+                        }
+                        
                         querySnapshot.forEach((doc) => {
                             const paste = doc.data();
-                            pastes.push({...paste, id: doc.id});
+                            const pasteElement = createPasteCard(paste, doc.id, true);
+                            userPastesContainer.appendChild(pasteElement);
                         });
-                        
-                        // Apply search filter if needed
-                        const searchTerm = userSearchInput.value.trim().toLowerCase();
-                        if (searchTerm) {
-                            pastes = pastes.filter(paste => 
-                                paste.title.toLowerCase().includes(searchTerm) || 
-                                paste.content.toLowerCase().includes(searchTerm)
-                            );
-                        }
-                        
-                        displayPastesWithPagination(pastes, userPastesContainer, userPaginationContainer, true);
                     })
                     .catch((error) => {
-                        console.error('Error loading user pastes:', error);
-                        userPastesContainer.innerHTML = `
-                            <div class="empty-state">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                <h3>Error loading your pastes</h3>
-                                <p>There was a problem loading your pastes. Please try again later.</p>
-                            </div>
-                        `;
+                        console.error('Complex user query failed, trying simple query:', error);
+                        
+                        // Fallback to simple query
+                        const simpleQuery = window.firebaseMethods.collection(window.firebase.db, "pastes");
+                        
+                        window.firebaseMethods.getDocs(simpleQuery)
+                            .then((querySnapshot) => {
+                                userPastesContainer.innerHTML = '';
+                                
+                                let userPastes = [];
+                                querySnapshot.forEach((doc) => {
+                                    const paste = doc.data();
+                                    if (paste.userId === window.currentUser.uid) {
+                                        userPastes.push({...paste, id: doc.id});
+                                    }
+                                });
+                                
+                                if (userPastes.length === 0) {
+                                    userPastesContainer.innerHTML = `
+                                        <div class="empty-state">
+                                            <i class="fas fa-paste"></i>
+                                            <h3>No pastes yet</h3>
+                                            <p>You haven't created any pastes yet.</p>
+                                            <a href="#/create" class="btn btn-primary">Create Your First Paste</a>
+                                        </div>
+                                    `;
+                                    return;
+                                }
+                                
+                                // Sort by date manually
+                                userPastes.sort((a, b) => {
+                                    const dateA = a.createdAt ? a.createdAt.toDate() : new Date(0);
+                                    const dateB = b.createdAt ? b.createdAt.toDate() : new Date(0);
+                                    return dateB - dateA;
+                                });
+                                
+                                userPastes.forEach((paste) => {
+                                    const pasteElement = createPasteCard(paste, paste.id, true);
+                                    userPastesContainer.appendChild(pasteElement);
+                                });
+                            })
+                            .catch((error) => {
+                                console.error('Error loading user pastes:', error);
+                                userPastesContainer.innerHTML = `
+                                    <div class="empty-state">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        <h3>Error loading your pastes</h3>
+                                        <p>There was a problem loading your pastes. Please try again later.</p>
+                                    </div>
+                                `;
+                            });
                     });
-            }
-
-            // Display pastes with pagination
-            function displayPastesWithPagination(pastes, container, paginationContainer, isUserPastes) {
-                container.innerHTML = '';
-                
-                if (pastes.length === 0) {
-                    container.innerHTML = `
-                        <div class="empty-state">
-                            <i class="fas fa-paste"></i>
-                            <h3>No pastes found</h3>
-                            <p>${isUserPastes ? 'You haven\'t created any pastes yet.' : 'No pastes match your search criteria.'}</p>
-                            ${!isUserPastes ? '<a href="#/create" class="btn btn-primary">Create Paste</a>' : ''}
-                        </div>
-                    `;
-                    paginationContainer.innerHTML = '';
-                    return;
-                }
-                
-                const totalPages = Math.ceil(pastes.length / pastesPerPage);
-                const currentPage = isUserPastes ? userCurrentPage : window.currentPage;
-                const startIndex = (currentPage - 1) * pastesPerPage;
-                const endIndex = startIndex + pastesPerPage;
-                const paginatedPastes = pastes.slice(startIndex, endIndex);
-                
-                paginatedPastes.forEach((paste) => {
-                    const pasteElement = createPasteCard(paste, paste.id, isUserPastes);
-                    container.appendChild(pasteElement);
-                });
-                
-                // Generate pagination
-                generatePagination(totalPages, currentPage, paginationContainer, isUserPastes);
-            }
-
-            // Generate pagination buttons
-            function generatePagination(totalPages, currentPage, container, isUserPastes) {
-                container.innerHTML = '';
-                
-                if (totalPages <= 1) return;
-                
-                for (let i = 1; i <= totalPages; i++) {
-                    const pageBtn = document.createElement('button');
-                    pageBtn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
-                    pageBtn.textContent = i;
-                    pageBtn.addEventListener('click', function() {
-                        if (isUserPastes) {
-                            userCurrentPage = i;
-                            loadUserPastes();
-                        } else {
-                            window.currentPage = i;
-                            loadRecentPastes();
-                        }
-                    });
-                    container.appendChild(pageBtn);
-                }
-            }
-
-            // Search pastes
-            function searchPastes(searchTerm) {
-                loadRecentPastes(); // This will now handle search through the filter
-            }
-
-            // Search user pastes
-            function searchUserPastes(searchTerm) {
-                loadUserPastes(); // This will now handle search through the filter
             }
 
             // Load Individual Paste
@@ -2169,22 +1623,52 @@
                                 return;
                             }
                             
-                            // Check if paste is password protected
-                            if (paste.isPasswordProtected) {
-                                currentPasswordProtectedPaste = paste;
-                                passwordModal.classList.remove('hidden');
-                                return;
+                            // Get visibility badge
+                            let visibilityBadge = '';
+                            if (paste.visibility === 'public') {
+                                visibilityBadge = '<span class="visibility-badge visibility-public"><i class="fas fa-globe"></i> Public</span>';
+                            } else if (paste.visibility === 'unlisted') {
+                                visibilityBadge = '<span class="visibility-badge visibility-unlisted"><i class="fas fa-link"></i> Unlisted</span>';
+                            } else {
+                                visibilityBadge = '<span class="visibility-badge visibility-private"><i class="fas fa-lock"></i> Private</span>';
                             }
                             
-                            displayPasteContent(paste);
+                            // Check if user can edit this paste
+                            const canEdit = window.currentUser && paste.userId === window.currentUser.uid;
                             
-                            // Increment view count
-                            if (!paste.isPasswordProtected) {
-                                const docRef = window.firebaseMethods.doc(window.firebase.db, "pastes", pasteId);
-                                window.firebaseMethods.updateDoc(docRef, {
-                                    views: window.firebaseMethods.increment(1)
-                                });
-                            }
+                            pasteContainer.innerHTML = `
+                                <div class="paste-meta">
+                                    <div>
+                                        <h2>${paste.title || 'Untitled'} ${visibilityBadge}</h2>
+                                        <p>Created by: ${paste.userEmail || 'Anonymous'} • ${formatDate(paste.createdAt?.toDate())}
+                                        ${paste.updatedAt && paste.updatedAt.toDate().getTime() !== paste.createdAt.toDate().getTime() ? 
+                                            ` • Edited: ${formatDate(paste.updatedAt?.toDate())}` : ''}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <span class="paste-language">${paste.language}</span>
+                                    </div>
+                                </div>
+                                <div class="paste-content">${escapeHtml(paste.content)}</div>
+                                <div class="action-buttons">
+                                    <button class="btn btn-outline" onclick="copyToClipboard('${escapeHtml(paste.content).replace(/'/g, "\\'")}')">
+                                        <i class="fas fa-copy"></i> Copy
+                                    </button>
+                                    ${canEdit ? 
+                                        `<button class="btn btn-warning" onclick="openEditModal('${pasteId}')">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </button>` : ''
+                                    }
+                                    ${canEdit ? 
+                                        `<button class="btn btn-outline" onclick="deletePaste('${pasteId}')">
+                                            <i class="fas fa-trash"></i> Delete
+                                        </button>` : ''
+                                    }
+                                    <button class="btn btn-primary" onclick="window.location.hash = '#/create'">
+                                        <i class="fas fa-plus"></i> New Paste
+                                    </button>
+                                </div>
+                            `;
                         } else {
                             pasteContainer.innerHTML = `
                                 <div class="empty-state">
@@ -2208,227 +1692,6 @@
                     });
             }
 
-            // Display paste content
-            function displayPasteContent(paste) {
-                const pasteContainer = document.getElementById('pasteContainer');
-                
-                // Get visibility badge
-                let visibilityBadge = '';
-                if (paste.visibility === 'public') {
-                    visibilityBadge = '<span class="visibility-badge visibility-public"><i class="fas fa-globe"></i> Public</span>';
-                } else if (paste.visibility === 'unlisted') {
-                    visibilityBadge = '<span class="visibility-badge visibility-unlisted"><i class="fas fa-link"></i> Unlisted</span>';
-                } else {
-                    visibilityBadge = '<span class="visibility-badge visibility-private"><i class="fas fa-lock"></i> Private</span>';
-                }
-                
-                // Check if user can edit this paste
-                const canEdit = window.currentUser && paste.userId === window.currentUser.uid;
-                
-                // Get current URL for sharing
-                const currentUrl = window.location.href;
-                
-                pasteContainer.innerHTML = `
-                    <div class="paste-meta">
-                        <div>
-                            <h2>${paste.title || 'Untitled'} ${visibilityBadge}</h2>
-                            <p>Created by: ${paste.userEmail || 'Anonymous'} • ${formatDate(paste.createdAt?.toDate())}
-                            ${paste.updatedAt && paste.updatedAt.toDate().getTime() !== paste.createdAt.toDate().getTime() ? 
-                                ` • Edited: ${formatDate(paste.updatedAt?.toDate())}` : ''}
-                            • ${paste.views || 0} views
-                            ${paste.isPasswordProtected ? ' • <i class="fas fa-lock"></i> Password Protected' : ''}
-                            </p>
-                        </div>
-                        <div>
-                            <span class="paste-language">${paste.language}</span>
-                        </div>
-                    </div>
-                    <div class="view-options">
-                        <button class="btn btn-outline active" id="viewRaw">Raw</button>
-                        <button class="btn btn-outline" id="viewHighlighted">Highlighted</button>
-                    </div>
-                    <div class="paste-content" id="pasteContentDisplay">
-                        <pre class="raw-content">${escapeHtml(paste.content)}</pre>
-                    </div>
-                    <div class="share-options">
-                        <input type="text" class="share-input" value="${currentUrl}" readonly>
-                        <button class="btn btn-outline" onclick="copyToClipboard('${currentUrl}')">
-                            <i class="fas fa-copy"></i> Copy Link
-                        </button>
-                    </div>
-                    <div class="action-buttons">
-                        <button class="btn btn-outline" onclick="copyToClipboard('${escapeHtml(paste.content).replace(/'/g, "\\'")}')">
-                            <i class="fas fa-copy"></i> Copy Content
-                        </button>
-                        <button class="btn btn-info" onclick="downloadPaste('${paste.title || 'paste'}', '${escapeHtml(paste.content).replace(/'/g, "\\'")}')">
-                            <i class="fas fa-download"></i> Download
-                        </button>
-                        ${canEdit ? 
-                            `<button class="btn btn-warning" onclick="openEditModal('${window.location.hash.split('/')[2]}')">
-                                <i class="fas fa-edit"></i> Edit
-                            </button>` : ''
-                        }
-                        ${canEdit ? 
-                            `<button class="btn btn-outline" onclick="deletePaste('${window.location.hash.split('/')[2]}')">
-                                <i class="fas fa-trash"></i> Delete
-                            </button>` : ''
-                        }
-                        <button class="btn btn-primary" onclick="window.location.hash = '#/create'">
-                            <i class="fas fa-plus"></i> New Paste
-                        </button>
-                    </div>
-                `;
-                
-                // Add view toggle functionality
-                document.getElementById('viewRaw').addEventListener('click', function() {
-                    document.getElementById('viewRaw').classList.add('active');
-                    document.getElementById('viewHighlighted').classList.remove('active');
-                    document.getElementById('pasteContentDisplay').innerHTML = `<pre class="raw-content">${escapeHtml(paste.content)}</pre>`;
-                });
-                
-                document.getElementById('viewHighlighted').addEventListener('click', function() {
-                    document.getElementById('viewHighlighted').classList.add('active');
-                    document.getElementById('viewRaw').classList.remove('active');
-                    const highlighted = hljs.highlightAuto(paste.content).value;
-                    document.getElementById('pasteContentDisplay').innerHTML = `<pre class="syntax-highlighted"><code>${highlighted}</code></pre>`;
-                });
-            }
-
-            // Load Stats
-function loadStats() {
-    // Load total pastes - only count public and unlisted pastes for non-authenticated users
-    let q = window.firebaseMethods.query(
-        window.firebaseMethods.collection(window.firebase.db, "pastes"),
-        window.firebaseMethods.where("visibility", "in", ["public", "unlisted"])
-    );
-    
-    // If user is authenticated, we can count their private pastes too
-    let userPastesQuery = null;
-    if (window.currentUser) {
-        userPastesQuery = window.firebaseMethods.query(
-            window.firebaseMethods.collection(window.firebase.db, "pastes"),
-            window.firebaseMethods.where("userId", "==", window.currentUser.uid),
-            window.firebaseMethods.where("visibility", "==", "private")
-        );
-    }
-    
-    // First, get public/unlisted pastes
-    window.firebaseMethods.getDocs(q)
-        .then((querySnapshot) => {
-            let total = 0;
-            let publicCount = 0;
-            let views = 0;
-            let publicPastesList = [];
-            
-            querySnapshot.forEach((doc) => {
-                const paste = doc.data();
-                total++;
-                views += paste.views || 0;
-                
-                if (paste.visibility === 'public') {
-                    publicCount++;
-                }
-                
-                publicPastesList.push({...paste, id: doc.id});
-            });
-            
-            // If user is authenticated, get their private pastes
-            if (window.currentUser && userPastesQuery) {
-                return window.firebaseMethods.getDocs(userPastesQuery)
-                    .then((userQuerySnapshot) => {
-                        let userPrivateCount = 0;
-                        let userPrivateViews = 0;
-                        
-                        userQuerySnapshot.forEach((doc) => {
-                            const paste = doc.data();
-                            total++;
-                            userPrivateCount++;
-                            views += paste.views || 0;
-                            publicPastesList.push({...paste, id: doc.id});
-                        });
-                        
-                        // Update UI with all data
-                        updateStatsUI(total, publicCount, userPrivateCount, views, publicPastesList);
-                    });
-            } else {
-                // Update UI with only public data
-                updateStatsUI(total, publicCount, 0, views, publicPastesList);
-            }
-        })
-        .catch((error) => {
-            console.error('Error loading stats:', error);
-            // Fallback: try to load just public pastes
-            loadPublicStatsOnly();
-        });
-}
-
-// Fallback function to load only public stats
-function loadPublicStatsOnly() {
-    const q = window.firebaseMethods.query(
-        window.firebaseMethods.collection(window.firebase.db, "pastes"),
-        window.firebaseMethods.where("visibility", "==", "public")
-    );
-    
-    window.firebaseMethods.getDocs(q)
-        .then((querySnapshot) => {
-            let total = 0;
-            let publicCount = 0;
-            let views = 0;
-            let publicPastesList = [];
-            
-            querySnapshot.forEach((doc) => {
-                const paste = doc.data();
-                total++;
-                publicCount++;
-                views += paste.views || 0;
-                publicPastesList.push({...paste, id: doc.id});
-            });
-            
-            updateStatsUI(total, publicCount, 0, views, publicPastesList);
-        })
-        .catch((error) => {
-            console.error('Error loading public stats:', error);
-            showAlert('Error loading statistics', 'error');
-        });
-}
-
-// Update the stats UI
-function updateStatsUI(total, publicCount, userPrivateCount, views, pastesList) {
-    totalPastes.textContent = total;
-    publicPastes.textContent = publicCount;
-    userPastesCount.textContent = userPrivateCount;
-    totalViews.textContent = views;
-    
-    // Display popular pastes (only from the pastes we have access to)
-    displayPopularPastes(pastesList);
-}
-
-// Display popular pastes (updated to work with the pastes list)
-function displayPopularPastes(pastesList) {
-    // Sort by views (descending) and take top 6
-    pastesList.sort((a, b) => (b.views || 0) - (a.views || 0));
-    const popularPastes = pastesList.slice(0, 6);
-    
-    const popularPastesContainer = document.getElementById('popularPastes');
-    popularPastesContainer.innerHTML = '';
-    
-    if (popularPastes.length === 0) {
-        popularPastesContainer.innerHTML = `
-            <div class="empty-state">
-                <i class="fas fa-chart-bar"></i>
-                <h3>No popular pastes yet</h3>
-                <p>Pastes will appear here as they get more views.</p>
-            </div>
-        `;
-        return;
-    }
-    
-    popularPastes.forEach((paste) => {
-        const pasteElement = createPasteCard(paste, paste.id);
-        popularPastesContainer.appendChild(pasteElement);
-    });
-}
-
             // Create Paste Card Element
             function createPasteCard(paste, id, showEdit = false) {
                 const card = document.createElement('div');
@@ -2444,17 +1707,13 @@ function displayPopularPastes(pastesList) {
                     visibilityBadge = '<span class="visibility-badge visibility-private"><i class="fas fa-lock"></i></span>';
                 }
                 
-                // Add password badge if protected
-                const passwordBadge = paste.isPasswordProtected ? 
-                    '<span class="visibility-badge visibility-private" style="margin-left: 5px;"><i class="fas fa-key"></i></span>' : '';
-                
                 // Truncate content for preview
                 const previewContent = paste.content.length > 200 ? 
                     paste.content.substring(0, 200) + '...' : paste.content;
                 
                 card.innerHTML = `
                     <div class="paste-card-header">
-                        <h3 class="paste-title" title="${paste.title || 'Untitled'}">${paste.title || 'Untitled'} ${visibilityBadge} ${passwordBadge}</h3>
+                        <h3 class="paste-title" title="${paste.title || 'Untitled'}">${paste.title || 'Untitled'} ${visibilityBadge}</h3>
                         <span class="paste-language">${paste.language}</span>
                     </div>
                     <div class="paste-card-body">
@@ -2491,7 +1750,6 @@ function displayPopularPastes(pastesList) {
                             editPasteLanguage.value = paste.language || 'plaintext';
                             editPasteExpiry.value = paste.expiry || 'never';
                             editPasteVisibility.value = paste.visibility || 'public';
-                            editPastePassword.value = paste.password || '';
                             
                             // Show modal
                             editPasteModal.classList.remove('hidden');
@@ -2572,16 +1830,6 @@ function displayPopularPastes(pastesList) {
                         }
                         document.body.removeChild(textArea);
                     });
-            };
-
-            window.downloadPaste = function(filename, content) {
-                const element = document.createElement('a');
-                const file = new Blob([content], {type: 'text/plain'});
-                element.href = URL.createObjectURL(file);
-                element.download = filename + '.txt';
-                document.body.appendChild(element);
-                element.click();
-                document.body.removeChild(element);
             };
 
             window.deletePaste = function(pasteId) {
