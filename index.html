@@ -154,6 +154,24 @@
             color: white;
         }
 
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #3aa8d4;
+        }
+
+        .btn-warning {
+            background-color: var(--warning);
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background-color: #e08615;
+        }
+
         .page {
             display: none;
             padding: 40px 0;
@@ -477,6 +495,7 @@
             display: flex;
             gap: 10px;
             margin-top: 20px;
+            flex-wrap: wrap;
         }
 
         footer {
@@ -544,6 +563,105 @@
             color: var(--gray);
         }
 
+        .edit-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background-color: var(--warning);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        body.dark-mode .modal-content {
+            background-color: var(--card-dark);
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        body.dark-mode .modal-header {
+            border-bottom: 1px solid #444;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .modal-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        body.dark-mode .modal-footer {
+            border-top: 1px solid #444;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        .visibility-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+
+        .visibility-public {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .visibility-unlisted {
+            background-color: var(--info);
+            color: white;
+        }
+
+        .visibility-private {
+            background-color: var(--warning);
+            color: white;
+        }
+
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -575,6 +693,10 @@
             
             .hero h1 {
                 font-size: 2rem;
+            }
+            
+            .modal-content {
+                width: 95%;
             }
         }
     </style>
@@ -648,6 +770,11 @@
                             <option value="sql">SQL</option>
                             <option value="cpp">C++</option>
                             <option value="csharp">C#</option>
+                            <option value="ruby">Ruby</option>
+                            <option value="swift">Swift</option>
+                            <option value="go">Go</option>
+                            <option value="rust">Rust</option>
+                            <option value="kotlin">Kotlin</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -701,7 +828,7 @@
         </div>
 
         <!-- Auth Modal -->
-        <div id="authModal" class="modal hidden">
+        <div id="authModal" class="modal-overlay hidden">
             <div class="auth-container">
                 <div class="auth-tabs">
                     <div class="auth-tab active" data-tab="signin">Sign In</div>
@@ -753,6 +880,71 @@
                 </div>
             </div>
         </div>
+
+        <!-- Edit Paste Modal -->
+        <div id="editPasteModal" class="modal-overlay hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Edit Paste</h2>
+                    <button class="close-modal" id="closeEditModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="editPasteTitle">Title</label>
+                        <input type="text" id="editPasteTitle" class="form-control" placeholder="Enter paste title">
+                    </div>
+                    <div class="form-group">
+                        <label for="editPasteContent">Content</label>
+                        <textarea id="editPasteContent" class="form-control" placeholder="Paste your code or text here..." rows="10"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editPasteLanguage">Syntax Highlighting</label>
+                            <select id="editPasteLanguage" class="form-control">
+                                <option value="plaintext">Plain Text</option>
+                                <option value="javascript">JavaScript</option>
+                                <option value="python">Python</option>
+                                <option value="java">Java</option>
+                                <option value="html">HTML</option>
+                                <option value="css">CSS</option>
+                                <option value="php">PHP</option>
+                                <option value="sql">SQL</option>
+                                <option value="cpp">C++</option>
+                                <option value="csharp">C#</option>
+                                <option value="ruby">Ruby</option>
+                                <option value="swift">Swift</option>
+                                <option value="go">Go</option>
+                                <option value="rust">Rust</option>
+                                <option value="kotlin">Kotlin</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editPasteExpiry">Expiration</label>
+                            <select id="editPasteExpiry" class="form-control">
+                                <option value="never">Never</option>
+                                <option value="10min">10 Minutes</option>
+                                <option value="1hour">1 Hour</option>
+                                <option value="1day">1 Day</option>
+                                <option value="1week">1 Week</option>
+                                <option value="1month">1 Month</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editPasteVisibility">Visibility</label>
+                        <select id="editPasteVisibility" class="form-control">
+                            <option value="public">Public</option>
+                            <option value="unlisted">Unlisted</option>
+                            <option value="private">Private</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline" id="cancelEdit">Cancel</button>
+                    <button class="btn btn-primary" id="savePaste">Save Changes</button>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -787,7 +979,8 @@
             orderBy, 
             limit,
             serverTimestamp,
-            deleteDoc
+            deleteDoc,
+            updateDoc
         } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
 
         // Your web app's Firebase configuration
@@ -826,7 +1019,8 @@
             orderBy,
             limit,
             serverTimestamp,
-            deleteDoc
+            deleteDoc,
+            updateDoc
         };
     </script>
 
@@ -842,6 +1036,20 @@
             const authTabs = document.querySelectorAll('.auth-tab');
             const authForms = document.querySelectorAll('.auth-form');
             const signInFromPastes = document.getElementById('signInFromPastes');
+            
+            // Edit Modal Elements
+            const editPasteModal = document.getElementById('editPasteModal');
+            const closeEditModal = document.getElementById('closeEditModal');
+            const cancelEdit = document.getElementById('cancelEdit');
+            const savePaste = document.getElementById('savePaste');
+            const editPasteTitle = document.getElementById('editPasteTitle');
+            const editPasteContent = document.getElementById('editPasteContent');
+            const editPasteLanguage = document.getElementById('editPasteLanguage');
+            const editPasteExpiry = document.getElementById('editPasteExpiry');
+            const editPasteVisibility = document.getElementById('editPasteVisibility');
+            
+            // Current paste being edited
+            let currentEditingPasteId = null;
             
             // Theme Toggle
             themeToggle.addEventListener('click', function() {
@@ -972,11 +1180,26 @@
                 });
             }
 
-            // Close modal when clicking outside
+            // Close modals when clicking outside
             authModal.addEventListener('click', function(e) {
                 if (e.target === authModal) {
                     authModal.classList.add('hidden');
                 }
+            });
+
+            editPasteModal.addEventListener('click', function(e) {
+                if (e.target === editPasteModal) {
+                    editPasteModal.classList.add('hidden');
+                }
+            });
+
+            // Close edit modal with buttons
+            closeEditModal.addEventListener('click', function() {
+                editPasteModal.classList.add('hidden');
+            });
+
+            cancelEdit.addEventListener('click', function() {
+                editPasteModal.classList.add('hidden');
             });
 
             // Auth with email and password
@@ -1097,6 +1320,7 @@
                     expiry,
                     visibility,
                     createdAt: window.firebaseMethods.serverTimestamp(),
+                    updatedAt: window.firebaseMethods.serverTimestamp(),
                     views: 0
                 };
                 
@@ -1129,7 +1353,50 @@
                 }
             });
 
-            // Load Recent Pastes - Fixed to handle index errors gracefully
+            // Save Edited Paste
+            savePaste.addEventListener('click', function() {
+                if (!currentEditingPasteId) return;
+                
+                const title = editPasteTitle.value;
+                const content = editPasteContent.value;
+                const language = editPasteLanguage.value;
+                const expiry = editPasteExpiry.value;
+                const visibility = editPasteVisibility.value;
+                
+                if (!content) {
+                    showAlert('Paste content cannot be empty', 'error');
+                    return;
+                }
+                
+                const pasteData = {
+                    title: title || 'Untitled',
+                    content,
+                    language,
+                    expiry,
+                    visibility,
+                    updatedAt: window.firebaseMethods.serverTimestamp()
+                };
+                
+                const docRef = window.firebaseMethods.doc(window.firebase.db, "pastes", currentEditingPasteId);
+                
+                window.firebaseMethods.updateDoc(docRef, pasteData)
+                    .then(() => {
+                        editPasteModal.classList.add('hidden');
+                        showAlert('Paste updated successfully', 'success');
+                        // Reload the current view
+                        if (window.location.hash.startsWith('#/paste/')) {
+                            loadPaste(currentEditingPasteId);
+                        } else if (window.location.hash === '#/my-pastes') {
+                            loadUserPastes();
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error updating paste:', error);
+                        showAlert('Error updating paste', 'error');
+                    });
+            });
+
+            // Load Recent Pastes
             function loadRecentPastes() {
                 const recentPastesContainer = document.getElementById('recentPastes');
                 
@@ -1234,7 +1501,7 @@
                     });
             }
 
-            // Load User Pastes - Fixed to handle index errors gracefully
+            // Load User Pastes
             function loadUserPastes() {
                 if (!window.currentUser) {
                     return;
@@ -1356,11 +1623,27 @@
                                 return;
                             }
                             
+                            // Get visibility badge
+                            let visibilityBadge = '';
+                            if (paste.visibility === 'public') {
+                                visibilityBadge = '<span class="visibility-badge visibility-public"><i class="fas fa-globe"></i> Public</span>';
+                            } else if (paste.visibility === 'unlisted') {
+                                visibilityBadge = '<span class="visibility-badge visibility-unlisted"><i class="fas fa-link"></i> Unlisted</span>';
+                            } else {
+                                visibilityBadge = '<span class="visibility-badge visibility-private"><i class="fas fa-lock"></i> Private</span>';
+                            }
+                            
+                            // Check if user can edit this paste
+                            const canEdit = window.currentUser && paste.userId === window.currentUser.uid;
+                            
                             pasteContainer.innerHTML = `
                                 <div class="paste-meta">
                                     <div>
-                                        <h2>${paste.title || 'Untitled'}</h2>
-                                        <p>Created by: ${paste.userEmail || 'Anonymous'} • ${formatDate(paste.createdAt?.toDate())}</p>
+                                        <h2>${paste.title || 'Untitled'} ${visibilityBadge}</h2>
+                                        <p>Created by: ${paste.userEmail || 'Anonymous'} • ${formatDate(paste.createdAt?.toDate())}
+                                        ${paste.updatedAt && paste.updatedAt.toDate().getTime() !== paste.createdAt.toDate().getTime() ? 
+                                            ` • Edited: ${formatDate(paste.updatedAt?.toDate())}` : ''}
+                                        </p>
                                     </div>
                                     <div>
                                         <span class="paste-language">${paste.language}</span>
@@ -1371,7 +1654,12 @@
                                     <button class="btn btn-outline" onclick="copyToClipboard('${escapeHtml(paste.content).replace(/'/g, "\\'")}')">
                                         <i class="fas fa-copy"></i> Copy
                                     </button>
-                                    ${window.currentUser && paste.userId === window.currentUser.uid ? 
+                                    ${canEdit ? 
+                                        `<button class="btn btn-warning" onclick="openEditModal('${pasteId}')">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </button>` : ''
+                                    }
+                                    ${canEdit ? 
                                         `<button class="btn btn-outline" onclick="deletePaste('${pasteId}')">
                                             <i class="fas fa-trash"></i> Delete
                                         </button>` : ''
@@ -1405,9 +1693,19 @@
             }
 
             // Create Paste Card Element
-            function createPasteCard(paste, id, showDelete = false) {
+            function createPasteCard(paste, id, showEdit = false) {
                 const card = document.createElement('div');
                 card.className = 'paste-card';
+                
+                // Get visibility badge
+                let visibilityBadge = '';
+                if (paste.visibility === 'public') {
+                    visibilityBadge = '<span class="visibility-badge visibility-public"><i class="fas fa-globe"></i></span>';
+                } else if (paste.visibility === 'unlisted') {
+                    visibilityBadge = '<span class="visibility-badge visibility-unlisted"><i class="fas fa-link"></i></span>';
+                } else {
+                    visibilityBadge = '<span class="visibility-badge visibility-private"><i class="fas fa-lock"></i></span>';
+                }
                 
                 // Truncate content for preview
                 const previewContent = paste.content.length > 200 ? 
@@ -1415,7 +1713,7 @@
                 
                 card.innerHTML = `
                     <div class="paste-card-header">
-                        <h3 class="paste-title" title="${paste.title || 'Untitled'}">${paste.title || 'Untitled'}</h3>
+                        <h3 class="paste-title" title="${paste.title || 'Untitled'}">${paste.title || 'Untitled'} ${visibilityBadge}</h3>
                         <span class="paste-language">${paste.language}</span>
                     </div>
                     <div class="paste-card-body">
@@ -1433,6 +1731,37 @@
                 
                 return card;
             }
+
+            // Open Edit Modal
+            window.openEditModal = function(pasteId) {
+                currentEditingPasteId = pasteId;
+                
+                // Load paste data
+                const docRef = window.firebaseMethods.doc(window.firebase.db, "pastes", pasteId);
+                
+                window.firebaseMethods.getDoc(docRef)
+                    .then((docSnap) => {
+                        if (docSnap.exists()) {
+                            const paste = docSnap.data();
+                            
+                            // Populate form fields
+                            editPasteTitle.value = paste.title || '';
+                            editPasteContent.value = paste.content;
+                            editPasteLanguage.value = paste.language || 'plaintext';
+                            editPasteExpiry.value = paste.expiry || 'never';
+                            editPasteVisibility.value = paste.visibility || 'public';
+                            
+                            // Show modal
+                            editPasteModal.classList.remove('hidden');
+                        } else {
+                            showAlert('Paste not found', 'error');
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error loading paste for editing:', error);
+                        showAlert('Error loading paste for editing', 'error');
+                    });
+            };
 
             // Utility Functions
             function showAlert(message, type) {
