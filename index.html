@@ -1566,12 +1566,19 @@
                     if (window.currentUser) {
                         loadUserPastes();
                     }
-                } else if (hash === '/stats') {
-                    navigateToPage('stats');
-                    loadStats();
-                }
-            }
-
+                // In the handleHashChange function, update the stats section:
+} else if (hash === '/stats') {
+    navigateToPage('stats');
+    // Use setTimeout to ensure the page is rendered before loading stats
+    setTimeout(() => {
+        try {
+            loadStats();
+        } catch (error) {
+            console.error('Error loading stats:', error);
+            showAlert('Error loading statistics. Some data may not be available.', 'error');
+        }
+    }, 100);
+}
             // Initial page load
             handleHashChange();
             
@@ -2288,79 +2295,139 @@
             }
 
             // Load Stats
-            function loadStats() {
-                // Load total pastes
-                const q = window.firebaseMethods.collection(window.firebase.db, "pastes");
+function loadStats() {
+    // Load total pastes - only count public and unlisted pastes for non-authenticated users
+    let q = window.firebaseMethods.query(
+        window.firebaseMethods.collection(window.firebase.db, "pastes"),
+        window.firebaseMethods.where("visibility", "in", ["public", "unlisted"])
+    );
+    
+    // If user is authenticated, we can count their private pastes too
+    let userPastesQuery = null;
+    if (window.currentUser) {
+        userPastesQuery = window.firebaseMethods.query(
+            window.firebaseMethods.collection(window.firebase.db, "pastes"),
+            window.firebaseMethods.where("userId", "==", window.currentUser.uid),
+            window.firebaseMethods.where("visibility", "==", "private")
+        );
+    }
+    
+    // First, get public/unlisted pastes
+    window.firebaseMethods.getDocs(q)
+        .then((querySnapshot) => {
+            let total = 0;
+            let publicCount = 0;
+            let views = 0;
+            let publicPastesList = [];
+            
+            querySnapshot.forEach((doc) => {
+                const paste = doc.data();
+                total++;
+                views += paste.views || 0;
                 
-                window.firebaseMethods.getDocs(q)
-                    .then((querySnapshot) => {
-                        let total = 0;
-                        let publicCount = 0;
-                        let userCount = 0;
-                        let views = 0;
-                        let userPastesList = [];
-                        
-                        querySnapshot.forEach((doc) => {
-                            const paste = doc.data();
-                            total++;
-                            views += paste.views || 0;
-                            
-                            if (paste.visibility === 'public') {
-                                publicCount++;
-                            }
-                            
-                            if (window.currentUser && paste.userId === window.currentUser.uid) {
-                                userCount++;
-                                userPastesList.push({...paste, id: doc.id});
-                            }
-                        });
-                        
-                        totalPastes.textContent = total;
-                        publicPastes.textContent = publicCount;
-                        userPastesCount.textContent = userCount;
-                        totalViews.textContent = views;
-                        
-                        // Display popular pastes
-                        displayPopularPastes(querySnapshot);
-                    })
-                    .catch((error) => {
-                        console.error('Error loading stats:', error);
-                    });
-            }
-
-            // Display popular pastes
-            function displayPopularPastes(querySnapshot) {
-                let pastes = [];
-                querySnapshot.forEach((doc) => {
-                    const paste = doc.data();
-                    if (paste.visibility === 'public') {
-                        pastes.push({...paste, id: doc.id});
-                    }
-                });
-                
-                // Sort by views (descending) and take top 6
-                pastes.sort((a, b) => (b.views || 0) - (a.views || 0));
-                pastes = pastes.slice(0, 6);
-                
-                const popularPastesContainer = document.getElementById('popularPastes');
-                popularPastesContainer.innerHTML = '';
-                
-                if (pastes.length === 0) {
-                    popularPastesContainer.innerHTML = `
-                        <div class="empty-state">
-                            <i class="fas fa-chart-bar"></i>
-                            <h3>No popular pastes yet</h3>
-                            <p>Pastes will appear here as they get more views.</p>
-                        </div>
-                    `;
-                    return;
+                if (paste.visibility === 'public') {
+                    publicCount++;
                 }
                 
-                pastes.forEach((paste) => {
-                    const pasteElement = createPasteCard(paste, paste.id);
-                    popularPastesContainer.appendChild(pasteElement);
-                });
+                publicPastesList.push({...paste, id: doc.id});
+            });
+            
+            // If user is authenticated, get their private pastes
+            if (window.currentUser && userPastesQuery) {
+                return window.firebaseMethods.getDocs(userPastesQuery)
+                    .then((userQuerySnapshot) => {
+                        let userPrivateCount = 0;
+                        let userPrivateViews = 0;
+                        
+                        userQuerySnapshot.forEach((doc) => {
+                            const paste = doc.data();
+                            total++;
+                            userPrivateCount++;
+                            views += paste.views || 0;
+                            publicPastesList.push({...paste, id: doc.id});
+                        });
+                        
+                        // Update UI with all data
+                        updateStatsUI(total, publicCount, userPrivateCount, views, publicPastesList);
+                    });
+            } else {
+                // Update UI with only public data
+                updateStatsUI(total, publicCount, 0, views, publicPastesList);
             }
+        })
+        .catch((error) => {
+            console.error('Error loading stats:', error);
+            // Fallback: try to load just public pastes
+            loadPublicStatsOnly();
+        });
+}
+
+// Fallback function to load only public stats
+function loadPublicStatsOnly() {
+    const q = window.firebaseMethods.query(
+        window.firebaseMethods.collection(window.firebase.db, "pastes"),
+        window.firebaseMethods.where("visibility", "==", "public")
+    );
+    
+    window.firebaseMethods.getDocs(q)
+        .then((querySnapshot) => {
+            let total = 0;
+            let publicCount = 0;
+            let views = 0;
+            let publicPastesList = [];
+            
+            querySnapshot.forEach((doc) => {
+                const paste = doc.data();
+                total++;
+                publicCount++;
+                views += paste.views || 0;
+                publicPastesList.push({...paste, id: doc.id});
+            });
+            
+            updateStatsUI(total, publicCount, 0, views, publicPastesList);
+        })
+        .catch((error) => {
+            console.error('Error loading public stats:', error);
+            showAlert('Error loading statistics', 'error');
+        });
+}
+
+// Update the stats UI
+function updateStatsUI(total, publicCount, userPrivateCount, views, pastesList) {
+    totalPastes.textContent = total;
+    publicPastes.textContent = publicCount;
+    userPastesCount.textContent = userPrivateCount;
+    totalViews.textContent = views;
+    
+    // Display popular pastes (only from the pastes we have access to)
+    displayPopularPastes(pastesList);
+}
+
+// Display popular pastes (updated to work with the pastes list)
+function displayPopularPastes(pastesList) {
+    // Sort by views (descending) and take top 6
+    pastesList.sort((a, b) => (b.views || 0) - (a.views || 0));
+    const popularPastes = pastesList.slice(0, 6);
+    
+    const popularPastesContainer = document.getElementById('popularPastes');
+    popularPastesContainer.innerHTML = '';
+    
+    if (popularPastes.length === 0) {
+        popularPastesContainer.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-chart-bar"></i>
+                <h3>No popular pastes yet</h3>
+                <p>Pastes will appear here as they get more views.</p>
+            </div>
+        `;
+        return;
+    }
+    
+    popularPastes.forEach((paste) => {
+        const pasteElement = createPasteCard(paste, paste.id);
+        popularPastesContainer.appendChild(pasteElement);
+    });
+}
 
             // Create Paste Card Element
             function createPasteCard(paste, id, showEdit = false) {
